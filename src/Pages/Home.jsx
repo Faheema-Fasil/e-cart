@@ -1,11 +1,14 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function Home() {
   return (
     <div style={{marginTop:"50px"}} className='container-fluid'>
       <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxeH5g4bVSM2f-gSIu28vo1QGQceIr0Qbf6g&s" />
+       <Link to="/view/:id">
+       <Card.Img variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxeH5g4bVSM2f-gSIu28vo1QGQceIr0Qbf6g&s" />
+       </Link>
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
         <Card.Text>
