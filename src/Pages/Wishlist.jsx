@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap'
+import Header from '../Components/Header'
 
 function Wishlist() {
   return (
     <>
+     <Header/>
       <div style={{ marginTop: "50px" }} className='container-fluid'>
         <Card style={{ width: '18rem' }}>
           <Card.Img variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxeH5g4bVSM2f-gSIu28vo1QGQceIr0Qbf6g&s" />

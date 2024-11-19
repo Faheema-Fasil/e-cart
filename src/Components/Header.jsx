@@ -3,9 +3,12 @@ import { Badge, Button,Form } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useDispatch } from 'react-redux';
 import {  Link } from 'react-router-dom';
+import { searchProduct } from '../Redux/slice/productSlice';
 
-function Header() {
+function Header({insideHome}) {
+  const dispatch = useDispatch()
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -16,11 +19,12 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {/* search  */}
-          <Form.Control
+          {insideHome&&<Form.Control
               type="text"
               placeholder="Search"
               className='w-25 ms-5'
-            />
+              onChange={e=>dispatch(searchProduct(e.target.value.toLowerCase()))}
+            />}
             <Nav className="ms-auto">
               <Nav.Link >
                 <Link to="/wishlist">

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import Header from '../Components/Header'
 
 function Cart() {
   return (
     <>
+     <Header/>
     <div className="row container">
 
       <div className="col-lg-7 ms-5">

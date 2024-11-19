@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import Header from '../Components/Header'
 
 function View() {
   return (
     <>
+     <Header/>
       <div className="container mt-5 row">
         <div className="col-lg-4 mt-5">
           <img width={"100%"} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxeH5g4bVSM2f-gSIu28vo1QGQceIr0Qbf6g&s" alt="" />

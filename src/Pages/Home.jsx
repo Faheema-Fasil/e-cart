@@ -3,6 +3,7 @@ import { Button, Card, Col, Row, Spinner } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchProducts } from '../Redux/slice/productSlice'
+import Header from '../Components/Header'
 
 function Home() {
 const dispatch = useDispatch()
@@ -11,6 +12,8 @@ useEffect(() => {
   dispatch(fetchProducts())
 }, [])
   return (
+   <>
+    <Header insideHome/>
     <div style={{marginTop:"50px"}} className='container-fluid'>
      {
       loading? <div className='text-center mt-5'>
@@ -19,9 +22,9 @@ useEffect(() => {
       <Row>
         {
           allproducts?.length>0?allproducts.map(product =>(
-            <Col >
+            <Col  key={product?.id}>
              <Card style={{ width: '18rem' }} className="m-3" >
-       <Link to="/view/:id">
+       <Link to={`/view/${product?.id}`}>
        <Card.Img variant="top" className='bg-success' src={product?.thumbnail} />
        </Link>
       <Card.Body>
@@ -43,6 +46,7 @@ useEffect(() => {
       
      }
     </div>
+   </>
   )
 }
 
