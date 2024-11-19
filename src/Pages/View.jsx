@@ -1,8 +1,24 @@
-import React from 'react'
 import { Button } from 'react-bootstrap'
 import Header from '../Components/Header'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 function View() {
+  const {id}=useParams()    //can handle path related infprmations from components
+  const[product,setProduct]=useState({})
+
+  useEffect(() => {
+    
+    if(localStorage.getItem("allProducts")){
+      const allProducts=JSON.parse(localStorage.getItem("allProducts"))
+      setProduct(allProducts.find(item => item.id==id))
+    }else{
+      setProduct('')
+    }
+  }, [])
+  console.log(product);
+  
+  
   return (
     <>
      <Header/>
