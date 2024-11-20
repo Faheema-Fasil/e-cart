@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Wishlist from "../../Pages/Wishlist";
+
 
 const wishListSlice=createSlice({
     name:'wishlist',
     initialState:{
-        Wishlist:[]
+        wishlist:[]
     },
-    reducers:[
-
-    ]
+    reducers:{
+        addToWishList:(state,action)=>{
+            state.wishlist.push(action.payload)
+        }
+    }
 })
-
+export const {addToWishList} =wishListSlice.actions    
 export default wishListSlice.reducer

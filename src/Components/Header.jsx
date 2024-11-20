@@ -11,7 +11,7 @@ function Header({insideHome}) {
   const dispatch = useDispatch()
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand="lg" className="border-bottom border-1 border-success">
         <Container>
           <Navbar.Brand >
             <Link to="/" style={{textDecoration:"none",fontSize:"30px"}}><i class="fa-solid fa-shop fa-bounce"></i> E-Cart</Link>
