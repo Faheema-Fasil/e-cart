@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchProducts } from '../Redux/slice/productSlice'
 import Header from '../Components/Header'
+import Footer from '../Components/Footer'
 
 function Home() {
 const dispatch = useDispatch()
@@ -23,7 +24,7 @@ useEffect(() => {
         {
           allproducts?.length>0?allproducts.map(product =>(
             <Col  key={product?.id}>
-             <Card style={{ width: '18rem' }} className="m-3" >
+             <Card style={{ width: '18rem',margin:"20px" }} className="m-3" >
        <Link to={`/view/${product?.id}`}>
        <Card.Img variant="top" className='bg-success' src={product?.thumbnail} />
        </Link>
@@ -46,6 +47,7 @@ useEffect(() => {
       
      }
     </div>
+
    </>
   )
 }
