@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Badge, Button,Form } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {  Link } from 'react-router-dom';
 import { searchProduct } from '../Redux/slice/productSlice';
 
 function Header({insideHome}) {
   const dispatch = useDispatch()
+  const{wishlist}=useSelector(state=>state.wishListReducer)
+  const[wishlistCount,setWishlistCount]=useState(0)
+  useEffect(() => {
+   setWishlistCount(wishlist.length)
+  }, [wishlist])
   return (
     <>
       <Navbar expand="lg" className="border-bottom border-1 border-success">
@@ -29,7 +34,7 @@ function Header({insideHome}) {
               <Nav.Link >
                 <Link to="/wishlist">
                   <Button variant="primary">
-                  <i class="fa-solid fa-heart" style={{"color": "#ffffff"}}></i> Wishlist <Badge bg="secondary">0</Badge>
+                  <i class="fa-solid fa-heart" style={{"color": "#ffffff"}}></i> Wishlist <Badge bg="secondary">{wishlistCount}</Badge>
                   </Button>
                 </Link>
               </Nav.Link>

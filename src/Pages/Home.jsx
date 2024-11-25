@@ -4,14 +4,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchProducts } from '../Redux/slice/productSlice'
 import Header from '../Components/Header'
-import Footer from '../Components/Footer'
+import { addToWishList } from '../Redux/slice/wishListSlice'
+
 
 function Home() {
 const dispatch = useDispatch()
 const {allproducts,loading,error}=useSelector(state=>state.productReducer)
+const{wishlist}=useSelector(state=>state.wishListReducer)
 useEffect(() => {
   dispatch(fetchProducts())
 }, [])
+
+const handelWishList=(product)=>{
+    const existingProduct=wishlist.find(item => item.id==product.id)
+    if (existingProduct) {
+      alert("Product already exist")
+    }else{
+      dispatch(addToWishList(product))
+    }
+  }
   return (
    <>
     <Header insideHome/>
@@ -34,7 +45,7 @@ useEffect(() => {
          {product?.description.slice(0,20)}...
         </Card.Text>
         <div className="d-flex justify-content-between">
-        <Button variant="primary"> <i class="fa-solid fa-heart" style={{"color": "#ffffff"}}></i></Button>
+        <Button variant="primary" onClick={()=>handelWishList(product)}> <i class="fa-solid fa-heart" style={{"color": "#ffffff"}}></i></Button>
         <Button variant="primary"><i className="fa-sharp-duotone fa-solid fa-cart-shopping" style={{"--fa-primary-color": "#5b5848", "--fa-secondary-color": "#5b5848"}}></i></Button>
         </div>
        
