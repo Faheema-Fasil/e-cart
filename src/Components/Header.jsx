@@ -11,9 +11,14 @@ function Header({insideHome}) {
   const dispatch = useDispatch()
   const{wishlist}=useSelector(state=>state.wishListReducer)
   const[wishlistCount,setWishlistCount]=useState(0)
+  const[cartCount,setCartCount]=useState(0)
+  const cart= useSelector((state)=>state.cartReducer)
+
+
   useEffect(() => {
    setWishlistCount(wishlist.length)
-  }, [wishlist])
+   setCartCount(cart.length)
+  }, [wishlist,cart])
   return (
     <>
       <Navbar expand="lg" className="border-bottom border-1 border-success">
@@ -41,7 +46,7 @@ function Header({insideHome}) {
               <Nav.Link >
                 <Link to="/cart">
                   <Button variant="primary">
-                  <i className="fa-sharp-duotone fa-solid fa-cart-shopping" style={{"--fa-primary-color": "#5b5848", "--fa-secondary-color": "#5b5848"}}></i> Cart <Badge bg="secondary">0</Badge>
+                  <i className="fa-sharp-duotone fa-solid fa-cart-shopping" style={{"--fa-primary-color": "#5b5848", "--fa-secondary-color": "#5b5848"}}></i> Cart <Badge bg="secondary">{cartCount}</Badge>
                   </Button>
                 </Link>
               </Nav.Link>

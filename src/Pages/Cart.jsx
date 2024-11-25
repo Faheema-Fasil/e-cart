@@ -1,11 +1,18 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import Header from '../Components/Header'
+import { useSelector } from 'react-redux'
 
 function Cart() {
+  const cart=useSelector((state)=>state.cartReducer)
   return (
     <>
      <Header/>
+
+     <div style={{marginTop:"100px"}}>
+      {
+        cart.length>0?(
+          
     <div className="row container">
 
       <div className="col-lg-7 ms-5">
@@ -15,20 +22,26 @@ function Cart() {
             <th>#</th>
             <th>Title</th>
             <th>Image</th>
+            <th>Quantity</th>
             <th>Price</th>
             <th>Action</th>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Product</td>
-            <td><img width={"70%"} height={"200px"} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxeH5g4bVSM2f-gSIu28vo1QGQceIr0Qbf6g&s" alt="" /></td>
-            <td className='text-danger'>$7789</td>
+          {cart?.map((product,index)=>
+        (
+           <tr>
+            <td>{index+1}</td>
+            <td>{product.title}</td>
+            <td><img width={"70%"} height={"100px"} src={product.thumbnail} alt="" /></td>
+            <td><input type="text" readOnly  value={product.quantity} style={{width:"25px"}}/></td>
+            <td className='text-danger'>${product.totalPrice}</td>
             <td>
               <Button className='btn '  variant="primary">
               <i class="fa-solid fa-trash" style={{ "color": "#ffffff" }}></i>
               </Button>
               </td>
           </tr>
+        ))}
+         
         </table>
       </div>
       </div>
@@ -45,6 +58,13 @@ function Cart() {
       </div>
 
     </div>
+        ):
+        <div className='text-center'>
+          <img width={"400px"} src="https://chocochi.com/static/media/cart-empty.27846abe.gif" alt="" />
+          <h1 className='mt-4 text-success'>Your Cart Is Empty...</h1>
+        </div>
+      }
+     </div>
       
     </>
   )

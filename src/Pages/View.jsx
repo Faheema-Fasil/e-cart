@@ -30,6 +30,16 @@ function View() {
       dispatch(addToWishList(product))
     }
   }
+  const handleCart=(product)=>{
+    const existingProduct=cart?.find(item => item.id==product.id)
+    if (existingProduct) {
+      alert("items added")
+      dispatch(addTocart(product))
+    }else{
+      alert("item added")
+      dispatch(addTocart(product))
+    }
+  }
   
   return (
     <>
@@ -48,7 +58,7 @@ function View() {
             <Button variant="primary" onClick={()=>handelWishList(product)}>
               <i class="fa-solid fa-heart" style={{ "color": "#ffffff" }}></i> Wishlist
             </Button>
-            <Button variant="primary">
+            <Button variant="primary" onClick={()=>handleCart(product)}>
               <i className="fa-sharp-duotone fa-solid fa-cart-shopping" style={{ "--fa-primary-color": "#5b5848", "--fa-secondary-color": "#5b5848" }}></i> Cart
             </Button>
           </div>
